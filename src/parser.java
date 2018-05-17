@@ -3,10 +3,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class parser {
 	String motif = new String();
-
+	point figure[]= new point[512];
 	
 	
 	public parser(String chemin ) {	
@@ -57,7 +58,7 @@ public class parser {
 		        		
 
 		        	} 
-		        	if (flag == 2 && flag != 3){
+		        	if (flag == 2){
 		        		index_f=line.indexOf("\"");
 		        		if (index_f!=-1) {
 		        			motif=motif+line.substring(0, index_f);
@@ -91,9 +92,37 @@ public class parser {
 		 *
 		 ***********************************************************************************************************/
 		
-		
-		
-		
+		int d1,d2,last_x,last_y;
+		String digit_string = new String();
+		point coord_bezier[]=new point [6];
+		boolean isRelative;
+		for (char c: motif.toCharArray()) {
+			if (Character.isLetter(c)) {
+				Arrays.fill(coord_bezier,null);
+				
+				if (Character.isLowerCase(c)) {
+					isRelative=true;
+				} else {
+					isRelative=false;
+				}
+				
+				if(Character.toLowerCase(c) == 'c') {
+					
+				}
+				else if(Character.toLowerCase(c) == 'm') {
+					
+				}
+				else if (c == 'z') {
+					
+				}
+			}
+			else if (Character.isDigit(c)) {
+				digit_string = digit_string + c;
+			}
+			else if (c == ',') {
+				
+			}
+		}
 		
 		
 		
