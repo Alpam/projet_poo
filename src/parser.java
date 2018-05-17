@@ -113,7 +113,7 @@ public class parser {
 					
 				}
 				else if(Character.toLowerCase(c) == 'm') {
-					
+					ArrayList.add(new point())
 				}
 				else if (c == 'z') {
 					
