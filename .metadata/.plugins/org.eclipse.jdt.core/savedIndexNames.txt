@@ -1,0 +1,2 @@
+INDEX VERSION 1.130+C:\Users\Geo\Documents\GitHub\projet_poo\.metadata\.plugins\org.eclipse.jdt.core
+3786438684.index

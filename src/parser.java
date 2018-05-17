@@ -1,14 +1,15 @@
+import java.awt.List;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class parser {
 	String motif = new String();
-	point figure[]= new point[512];
-	
+	ArrayList figure = new ArrayList();	
 	
 	public parser(String chemin ) {	
 		
@@ -92,9 +93,11 @@ public class parser {
 		 *
 		 ***********************************************************************************************************/
 		
-		int d1,d2,last_x,last_y;
+		int d1,d2;
+		int last_x=0;
+		int last_y=0;
 		String digit_string = new String();
-		point coord_bezier[]=new point [6];
+		point coord_bezier[]=new point [4];
 		boolean isRelative;
 		for (char c: motif.toCharArray()) {
 			if (Character.isLetter(c)) {
