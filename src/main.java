@@ -6,6 +6,7 @@ public class main {
 		}
 		parser test= new parser(args[0]);
 		test.print_motif();
+		test.print_figure();
 	}
 
 }

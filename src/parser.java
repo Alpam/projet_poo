@@ -1,4 +1,5 @@
 import java.awt.List;
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,7 +10,7 @@ import java.util.Arrays;
 
 public class parser {
 	String motif = new String();
-	ArrayList figure = new ArrayList();	
+	ArrayList<Point> figure = new ArrayList<Point>();	
 	
 	public parser(String chemin ) {	
 		
@@ -97,33 +98,77 @@ public class parser {
 		int last_x=0;
 		int last_y=0;
 		String digit_string = new String();
-		point coord_bezier[]=new point [4];
+		Point coord_bezier[]=new point [4];
 		boolean isRelative;
+			
 		for (char c: motif.toCharArray()) {
 			if (Character.isLetter(c)) {
 				Arrays.fill(coord_bezier,null);
 				
 				if (Character.isLowerCase(c)) {
-					isRelative=true;
+					this.isRelative=true;
 				} else {
-					isRelative=false;
+					this.isRelative=false;
 				}
 				
 				if(Character.toLowerCase(c) == 'c') {
-					
+					figure.remove(figure.get(figure.size()-1));
+					coord_bezier[0]=new Point(last_x,last_y);
 				}
 				else if(Character.toLowerCase(c) == 'm') {
-					ArrayList.add(new point())
+					figure.add(new Point(false));
 				}
 				else if (c == 'z') {
-					
+					figure.add(new Point((figure.get(0).x),(figure.get(0).y),true);
+					last_x=figure.get(0).x;
+					last_y=figure.get(0).y;
 				}
 			}
-			else if (Character.isDigit(c)) {
-				digit_string = digit_string + c;
+			else if (Character.isDigit(c) || c == '.' || c == '-') {
+				digit_string = digit_string + c;	
 			}
 			else if (c == ',') {
-				
+				d1=Integer.parseInt(digit_string);
+			} else if (c == ' ' && digit_string!=null) {
+				d2=Integer.parseInt(digit_string);
+				if (isRelative == false) {
+					last_x=0;
+					last_y=0;
+				}
+				if (coord_bezier[0]!=null) {
+					last_x = coord_bezier[0].x;
+					last_y= coord_bezier[0].y;
+				}
+				if (coord_bezier[0]== null) {
+					if figure.get(figure.size()-1).x == null{
+						figure.set(figure.size()-1).x == d1;
+						figure.set(figure.size()-1).y == d2;
+					} else {
+						figure.add(new Point(d1+last_x,d2+last_y,true);
+					}
+				} else if (coord_bezier[3]!=null) {
+					for (Point po : coord_bezier) {
+						if (po == null) {
+							po = new Point(d1+last_x,d2+last_y,true);
+							last_x += d1;
+							last_y += d2;
+							break;
+						}
+					} 
+				} else {
+					//calcul des segments pour la courbe de bezier
+					for (float i=0; i<=1; i=i+0.1) {
+						//calcul des valeurs x et y
+						int tmp_x=coord_bezier[0].x*Math.pow((1-i), 3)+3*coord_bezier[1].x*i*Math.pow(1-i, 2)
+								  + 3*coord_bezier[2].x*Math.pow(i, 2)*(1-i)+coord_bezier[3].x*Math.pow(i, 3);
+						int tmp_y=coord_bezier[0].y*Math.pow((1-i), 3)+3*coord_bezier[1].y*i*Math.pow(1-i, 2)
+								  + 3*coord_bezier[2].y*Math.pow(i, 2)*(1-i)+coord_bezier[3].y*Math.pow(i, 3);
+						//set du point
+						figure.add(new Point(tmp_x,tmp_y,true));
+					}
+					Arrays.fill(coord_bezier,null);
+					coord_bezier[0]=new Point(last_x, last_y);
+				}
 			}
 		}
 		
@@ -136,6 +181,16 @@ public class parser {
 	
 	public void print_motif() {
         System.out.println(this.motif);
+	}
+	
+	public void print_figure() {
+		for(Point po : figure) {
+			int d
+			if (po.drawable) {
+				d=1
+			}
+			System.out.println(po.x - po.y - d);
+		}
 	}
 	
 	
