@@ -1,28 +1,49 @@
 import javax.swing.JFrame;
-import java.awt.Graphics;
-import javax.swing.JPanel;
+import java.util.ArrayList;
 
-
-public class Afficheur extends JFrame {
+public class Afficheur{
+	
+	int height;
+	int width;
+	int foot;
+	JFrame frame;
+	
 	public static void main(String[] args) {
-		Afficheur aff = new Afficheur();
+		Afficheur aff = new Afficheur(400,400,20);
 	}
 	
-	public Afficheur() {
-			int height = 400;
-			int width = 400;
-			this.setLocationRelativeTo(null);
-			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public Afficheur(int height, int width, int foot) {
+			this.height = height;
+			this.width = width;
+			this.foot = foot;
+			this.frame = new JFrame("DEMO");
+			this.frame.setSize(height,width);
+			this.frame.setLocationRelativeTo(null);
+			this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
-			JPanel pan = new Panneau(height,width);
-			this.setContentPane(pan);
-			this.pack();
-			Point p1 = new Point(10,10);
-			Point p2 = new Point(310,310);
-			Graphics g = pan.getGraphics();
-			pan.paintComponent(g);
-			this.setVisible(true);
+			ArrayList<Point> l =grille();
+			Panneau pan = new Panneau(height,width,l);
+			
+			this.frame.add(pan);
+			this.frame.setVisible(true);
 	}
 	
+	public ArrayList<Point> grille(){
+		ArrayList<Point> l = new ArrayList<Point>();
+		int i=0;
+		boolean b = true;
+		while(i<=width) {
+			if(b) {l.add(new Point(i,0,false));b=false;}
+			else {l.add(new Point(i,height,true));b=true;i+=foot;}
+		}
+		i=0;
+		b=false;
+		while(i<=height) {
+			if(b) {l.add(new Point(0,i,false));b=false;}
+			else {l.add(new Point(width,i,true));b=true;i+=foot;}
+		}
+		return l;
+	}
+}
 
 
