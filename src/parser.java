@@ -148,8 +148,8 @@ public class parser {
                 }
                 if (coord_bezier[0]== null) {
                     if (flag==1){
-                        figure.get(figure.size()-1).x = (int)d1;
-                        figure.get(figure.size()-1).y = (int)d2;
+                        figure.get(figure.size()-1).x = (int)(d1+last_x);
+                        figure.get(figure.size()-1).y = (int)(d2+last_y);
                         last_x+=(int)d1;
                         last_y+=(int)d2;
                         flag=0;
