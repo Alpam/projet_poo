@@ -1,4 +1,3 @@
-import java.awt.List;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,8 +9,6 @@ import java.util.Arrays;
 public class parser {
     String motif = new String();
     ArrayList<Point> figure = new ArrayList<Point>();
-    private char c;
-   
     public parser(String chemin ) {
        
         /***********************************************************************************************************
@@ -105,7 +102,6 @@ public class parser {
         boolean isRelative=true;
        
         for (char c : motif.toCharArray()) {
-            isRelative=true;
             if (Character.isLetter(c)) {
                 Arrays.fill(coord_bezier,null);
                
@@ -153,8 +149,12 @@ public class parser {
                         last_x+=(int)d1;
                         last_y+=(int)d2;
                         flag=0;
+                        isRelative=true;
                     } else {
                         figure.add(new Point((int)(d1+last_x),(int) (d2+last_y),true));
+                        last_x+=(int)d1;
+                        last_y+=(int)d2;
+                        isRelative=true;
                     }
                 } else if (coord_bezier[3]==null) {
                     for (int i=0; i<4;i++) {
@@ -181,6 +181,7 @@ public class parser {
                     }
                     Arrays.fill(coord_bezier,null);
                     coord_bezier[0]=new Point((int)last_x,(int) last_y);
+                    isRelative=true;
                 }
             }
         }  
