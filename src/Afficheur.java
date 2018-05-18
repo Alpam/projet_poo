@@ -23,12 +23,12 @@ public class Afficheur{
 		aff.affiche_polygone(m);
 	}
 	
-	public Afficheur(int height, int width, int foot) {
+	public Afficheur(int width,int height, int foot) {
 			this.height = height;
 			this.width = width;
 			this.foot = foot;
 			this.frame = new JFrame("DEMO");
-			this.frame.setSize(height,width);
+			this.frame.setSize(width,height);
 			this.frame.setLocationRelativeTo(null);
 			this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			ArrayList<Point> l= new ArrayList<Point>();
@@ -61,31 +61,6 @@ public class Afficheur{
 		this.panel.setVisible(true);
 	}
 	
-	public void affiche_normalised_polygone(ArrayList<Point> l) {
-		ArrayList<Point> n;
-		Point b = Transformation.barycentre(l);
-		System.out.println("l:"+b.x+"|"+b.x);
-		n=Transformation.shrink(l);
-		b = Transformation.barycentre(n);
-		System.out.println("n:"+b.x+"|"+b.x);
-		Point t=l.get(0);
-		int x_min = t.x, y_min = t.y;
-		for(Point p : n) {
-			if(p.x<x_min) {x_min = p.x;}
-			if(p.y<y_min) {y_min = p.y;}
-		}
-		if(x_min<0 || y_min<0) {
-			if(x_min<0) {x_min = x_min*-1;}
-			if(y_min<0) {y_min = y_min*-1;}
-			n = Transformation.translation(n,new Point(x_min,y_min));
-		}
-		else {
-			n = new ArrayList<Point>(n);
-		}
-
-		//n=Transformation.translation(n, new Point(250,250));
-		affiche_polygone(n);
-	}
 }
 
 

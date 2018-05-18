@@ -58,4 +58,13 @@ public class Transformation {
 		
 		return n;
 	}
+	
+	public static ArrayList<Point> normalise_centralise_array(ArrayList<Point> l){
+		ArrayList<Point> n;
+		n=Transformation.shrink(l);
+		Point b = Transformation.barycentre(n);
+		Point v = new Point(600-b.x,400-b.y);
+		n=Transformation.translation(n,v);
+		return n;	
+	}
 }
