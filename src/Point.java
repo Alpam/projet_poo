@@ -4,6 +4,12 @@ public class Point {
 	int y;
 	boolean drawable;
 	
+	public Point(Point p) {
+		this.x = p.x;
+		this.y = p.y;
+		this.drawable = p.drawable;
+	}
+	
 	public Point(boolean isDraw) {
 		this.x=null;
 		this.y=null;
@@ -20,8 +26,11 @@ public class Point {
 		this.y=y;
 		this.drawable=isDraw;
 	}
-	public void add(Point p) {
-		this.x = p.x;
-		this.y = p.y;
+	public Point add(Point p) {
+		return new Point(this.x+p.x, this.y+p.y, this.drawable);
+	}
+	
+	public Point neg() {
+		return new Point(this.x*-1,this.y*-1);
 	}
 }
