@@ -11,15 +11,15 @@ public class Point {
 	}
 	
 	public Point(boolean isDraw) {
-		this.x=null;
-		this.y=null;
+		this.x=0;
+		this.y=0;
 		this.drawable=isDraw;
 	}
 	
 	public Point(int x, int y) {
 		this.x=x;
 		this.y=y;
-		this.drawable=null;
+		this.drawable=true;
 	}
 	public Point(int x, int y, boolean isDraw) {
 		this.x=x;

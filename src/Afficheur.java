@@ -12,7 +12,7 @@ public class Afficheur{
 	Panneau panel;
 	
 	public static void main(String[] args) {
-		Afficheur aff = new Afficheur(440,440,40);
+		Afficheur aff = new Afficheur(1000,1000,500);
 		ArrayList<Point> l = new ArrayList<Point>();
 		l.add(new Point(0,0,false));
 		l.add(new Point(400,400,true));
@@ -59,6 +59,32 @@ public class Afficheur{
 		this.panel.list = l;
 		this.panel.repaint();
 		this.panel.setVisible(true);
+	}
+	
+	public void affiche_normalised_polygone(ArrayList<Point> l) {
+		ArrayList<Point> n;
+		Point b = Transformation.barycentre(l);
+		System.out.println("l:"+b.x+"|"+b.x);
+		n=Transformation.shrink(l);
+		b = Transformation.barycentre(n);
+		System.out.println("n:"+b.x+"|"+b.x);
+		Point t=l.get(0);
+		int x_min = t.x, y_min = t.y;
+		for(Point p : n) {
+			if(p.x<x_min) {x_min = p.x;}
+			if(p.y<y_min) {y_min = p.y;}
+		}
+		if(x_min<0 || y_min<0) {
+			if(x_min<0) {x_min = x_min*-1;}
+			if(y_min<0) {y_min = y_min*-1;}
+			n = Transformation.translation(n,new Point(x_min,y_min));
+		}
+		else {
+			n = new ArrayList<Point>(n);
+		}
+
+		//n=Transformation.translation(n, new Point(250,250));
+		affiche_polygone(n);
 	}
 }
 
