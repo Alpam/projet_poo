@@ -20,4 +20,8 @@ public class Point {
 		this.y=y;
 		this.drawable=isDraw;
 	}
+	public void add(Point p) {
+		this.x = p.x;
+		this.y = p.y;
+	}
 }

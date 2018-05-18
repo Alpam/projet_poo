@@ -1,5 +1,7 @@
 import javax.swing.JFrame;
 import java.util.ArrayList;
+import java.awt.Color;
+import javax.swing.JPanel;
 
 public class Afficheur{
 	
@@ -7,9 +9,18 @@ public class Afficheur{
 	int width;
 	int foot;
 	JFrame frame;
+	Panneau panel;
 	
 	public static void main(String[] args) {
-		Afficheur aff = new Afficheur(400,400,20);
+		Afficheur aff = new Afficheur(440,440,40);
+		ArrayList<Point> l = new ArrayList<Point>();
+		l.add(new Point(0,0,false));
+		l.add(new Point(400,400,true));
+		aff.affiche_polygone(l);
+		ArrayList<Point> m = new ArrayList<Point>();
+		m.add(new Point(0,400,false));
+		m.add(new Point(400,0,true));
+		aff.affiche_polygone(m);
 	}
 	
 	public Afficheur(int height, int width, int foot) {
@@ -20,11 +31,10 @@ public class Afficheur{
 			this.frame.setSize(height,width);
 			this.frame.setLocationRelativeTo(null);
 			this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
-			ArrayList<Point> l =grille();
-			Panneau pan = new Panneau(height,width,l);
-			
-			this.frame.add(pan);
+			ArrayList<Point> l= new ArrayList<Point>();
+			this.panel = new Panneau(height,width,l,grille());
+			this.frame.add(this.panel);
+
 			this.frame.setVisible(true);
 	}
 	
@@ -43,6 +53,12 @@ public class Afficheur{
 			else {l.add(new Point(width,i,true));b=true;i+=foot;}
 		}
 		return l;
+	}
+	
+	public void affiche_polygone(ArrayList<Point> l) {
+		this.panel.list = l;
+		this.panel.repaint();
+		this.panel.setVisible(true);
 	}
 }
 
