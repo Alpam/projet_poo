@@ -48,6 +48,16 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
+      <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,2490.9448)">
+    <path
+       style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.35433071;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 910.3125,-1277.2573 c -192.83737,0 -349.1875,168.001 -349.1875,375.25 0,207.249 156.35013,375.2812 349.1875,375.2813 192.8374,0 349.1563,-168.0323 349.1563,-375.2813 0,-207.249 -156.3189,-375.25 -349.1563,-375.25 z m 0,0.094 c 192.7793,0 349.0313,167.9575 349.0313,375.1563 0,207.1988 -156.252,375.1562 -349.0313,375.1563 -192.77929,0 -349.0625,-167.9575 -349.0625,-375.1563 0,-207.1988 156.28321,-375.1563 349.0625,-375.1563 z"
+       id="path3975"
+       inkscape:connector-curvature="0" />
   <g
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
