@@ -32,7 +32,9 @@ public class Transformation {
 		double ca = Math.cos(a);
 		double sa = Math.sin(a);
 		for(Point p:l) {
-			n.add(new Point((int)(p.x*ca-p.y*sa),(int)(p.x*sa+p.y*ca),p.drawable));
+			n.add(new Point((int)Math.round((p.x*ca-p.y*sa)*1d/1d)
+					,(int)Math.round((p.x*sa+p.y*ca)*1d/1d)
+					,p.drawable));
 		}
 		return n;
 	}
@@ -50,10 +52,10 @@ public class Transformation {
 		Point t = new Point(0,0);
 		for(Point p:n) {
 			t = bary.add(p.neg());
-			if(p.x < bary.x) { p.x += (4*t.x)/5;}
-			else if(p.x > bary.x) { p.x += (4*t.x)/5;}
-			if(p.y < bary.y) { p.y += (4*t.y)/5;}
-			else if(p.y > bary.y) { p.y += (4*t.y)/5;}
+			if(p.x < bary.x) { p.x += (3*t.x)/5;}
+			else if(p.x > bary.x) { p.x += (3*t.x)/5;}
+			if(p.y < bary.y) { p.y += (3*t.y)/5;}
+			else if(p.y > bary.y) { p.y += (3*t.y)/5;}
 		}
 		
 		return n;
