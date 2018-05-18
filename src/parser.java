@@ -112,8 +112,7 @@ public class parser {
                 }
                
                 if(Character.toLowerCase(c) == 'c') {
-                    //figure.remove(figure.get(figure.size()-1));
-                    coord_bezier[0]=new Point((int)last_x,(int)last_y);
+                    coord_bezier[0]=new Point((int)figure.get(figure.size()-1).x,(int)figure.get(figure.size()-1).y);
                 }
                 else if(Character.toLowerCase(c) == 'm') {
                     figure.add(new Point(false));
@@ -149,12 +148,10 @@ public class parser {
                         last_x+=(int)d1;
                         last_y+=(int)d2;
                         flag=0;
-                        //isRelative=true;
                     } else {
                         figure.add(new Point((int)(d1+last_x),(int) (d2+last_y),true));
                         last_x+=(int)d1;
                         last_y+=(int)d2;
-                        //isRelative=true;
                     }
                 } else if (coord_bezier[3]==null) {
                     for (int i=0; i<4;i++) {
@@ -167,10 +164,10 @@ public class parser {
                     }
                 } else {
                     //calcul des segments pour la courbe de bezier
-                    for (float i=0; i<=1; i=(float) (i+0.1)) {
+                    for (float i=0; i<=1; i=(float) (i+0.01)) {
                         //calcul des valeurs x et y
-                        int tmp_x=(int) (coord_bezier[0].x*Math.pow((1-i), 3)+3*coord_bezier[1].x*i*Math.pow(1-i, 2) + 3*coord_bezier[2].x*Math.pow(i, 2)*(1-i)+coord_bezier[3].x*Math.pow(i, 3));
-                        int tmp_y=(int) (coord_bezier[0].y*Math.pow((1-i), 3)+3*coord_bezier[1].y*i*Math.pow(1-i, 2) + 3*coord_bezier[2].y*Math.pow(i, 2)*(1-i)+coord_bezier[3].y*Math.pow(i, 3));
+                        int tmp_x=(int) ((coord_bezier[0].x*Math.pow((1-i), 3))+(3*coord_bezier[1].x*i*Math.pow(1-i, 2) )+( 3*coord_bezier[2].x*Math.pow(i, 2)*(1-i))+(coord_bezier[3].x*Math.pow(i, 3)));
+                        int tmp_y=(int) ((coord_bezier[0].y*Math.pow((1-i), 3))+(3*coord_bezier[1].y*i*Math.pow(1-i, 2)) + (3*coord_bezier[2].y*Math.pow(i, 2)*(1-i))+(coord_bezier[3].y*Math.pow(i, 3)));
                         //set du point
                         if (i==0) {
                             figure.get(figure.size()-1).x = tmp_x;
@@ -181,7 +178,6 @@ public class parser {
                     }
                     Arrays.fill(coord_bezier,null);
                     coord_bezier[0]=new Point((int)last_x,(int) last_y);
-                    //isRelative=true;
                 }
             }
         }  
