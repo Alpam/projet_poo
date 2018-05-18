@@ -150,8 +150,8 @@ public class parser {
                     if (flag==1){
                         figure.get(figure.size()-1).x = (int)d1;
                         figure.get(figure.size()-1).y = (int)d2;
-                        last_x=(int)d1;
-                        last_y=(int)d2;
+                        last_x+=(int)d1;
+                        last_y+=(int)d2;
                         flag=0;
                     } else {
                         figure.add(new Point((int)(d1+last_x),(int) (d2+last_y),true));
